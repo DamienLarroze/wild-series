@@ -1,16 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-	{% for category in cat %}
-
-		<a href="{{ category.name }}">{{category.name}}
-		</a><br>
-
-	{% else %}
-
-		<p>Aucune catégorie existante !</p>
-
-	{% endfor %}
-
+	<div class="row mt-5">
+		{% for category in cat %}
+			<div class="col-4 col-md-2 mx-auto text-center mt-2">
+				<a class="text-light text-decoration-none display-6" href="{{ category.name }}">{{category.name}}
+				</a>
+			</div>
+		{% else %}
+			<p>Aucune catégorie existante !</p>
+		{% endfor %}
+	</div>
 {% endblock %}

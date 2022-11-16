@@ -3,16 +3,20 @@
 	<div class="row">
 		{% for cat in category %}
 			<div class="col-4">
-				<img src="{{cat.poster}}" alt="{{ cat.title }} poster" style="width:200px;">
-				<h1 class="mt-0">{{ cat.title }}</h1>
-				<p>{{ cat.synopsis }}</p>
+				<div class="bg-light bg-opacity-10 bg-gradient rounded mt-5 ms-5 d-grid">
+					<img src="{{cat.poster}}" alt="{{ cat.title }} poster" style="width:200px;" class="mx-auto mt-2 rounded">
+					<div class="bg-warning rounded mt-2 mb-2 mx-auto" style="width:90%;">
+						<h2 class="rounded-top text-center text-dark border-bottom bg-light" style="height:50px;">{{ cat.title }}</h1>
+						<p class="text-center ms-3 me-3 text-dark">{{ cat.synopsis }}</p>
+					</div>
+				</div>
 			</div>
 		{% else %}
 			<p class="text-center">Pas de film dans cette catégorie !</p>
 		{% endfor %}
 	</div>
 	<div class="row">
-		<a class="text-center" href="{{ path('category_index') }}">
+		<a class="text-center text-light text-decoration-none" href="{{ path('category_index') }}">
 			Retour à la liste des category
 		</a>
 	</div>
