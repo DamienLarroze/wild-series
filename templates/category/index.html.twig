@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	{% for category in cat %}
+
+		<a href="{{ category.name }}">{{category.name}}
+		</a><br>
+
+	{% else %}
+
+		<p>Aucune catégorie existante !</p>
+
+	{% endfor %}
+
+{% endblock %}

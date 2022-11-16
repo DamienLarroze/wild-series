@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="row">
+		{% for cat in category %}
+			<div class="col-4">
+				<img src="{{cat.poster}}" alt="{{ cat.title }} poster" style="width:200px;">
+				<h1 class="mt-0">{{ cat.title }}</h1>
+				<p>{{ cat.synopsis }}</p>
+			</div>
+		{% else %}
+			<p class="text-center">Pas de film dans cette catégorie !</p>
+		{% endfor %}
+	</div>
+	<div class="row">
+		<a class="text-center" href="{{ path('category_index') }}">
+			Retour à la liste des category
+		</a>
+	</div>
+{% endblock %}
