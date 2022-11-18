@@ -34,7 +34,7 @@ class ProgramController extends AbstractController
     #[Route('{program<\d+>}/season/{season<\d+>}', methods: ['GET'], name: 'season_show')]
     public function episode(EpisodeRepository $episodeRepository, Season $season, Program $program): Response
     {
-        $episode = $episodeRepository->findBy(['season' => $season], ['id' => 'ASC']);
+        $episode = $episodeRepository->findBy(['season' => $season], ['number' => 'ASC']);
         return $this->render('program/season_show.html.twig', ['season' => $episode, 'program' => $program]);
     }
 }

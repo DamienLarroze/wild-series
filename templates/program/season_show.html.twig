@@ -32,33 +32,31 @@
 							<th class="w-75">Titre</th>
 							<th>Regarder</th>
 						</thead>
-						<tbody>
-							<tr class="border-bottom">
-								<td height="50">1</td>
-								<td>Titre Test</td>
-								<td>Lien du stream</td>
-							</tr>
-							<tr class="border-bottom">
-								<td height="50">1</td>
-								<td>Titre Test</td>
-								<td>Lien du stream</td>
-							</tr>
-							<tr class="border-bottom">
-								<td height="50">1</td>
-								<td>Titre Test</td>
-								<td>Lien du stream</td>
-							</tr>
-						</tbody>
-					</table>
+						{% for ep in season %}
+							<tbody>
+								<tr class="border-bottom">
+									<td height="50">{{ ep.number }}</td>
+									<td>{{ ep.title }}</td>
+									<td>
+										<a href="#" class="text-decoration-none">Regarder</a>
+									</td>
+								</tr>
+							</tbody>
+						</td>
+					</tr>
+				</tbody>
+			{% else %}
+				<div class="row">
+					<div class="col">
+						<h2 class="text-center text-dark">Pas d'épisode pour cette série !</h2>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="row mt-5">
-			<div class="col mx-auto text-center">
-				<a href="{{ path('program_index') }}" class="mx-auto mt-2 text-decoration-none text-light">
-					retour à la liste des programmes
-				</a>
-			</div>
-		</div>
+			{% endfor %}
+		</table>
 	</div>
-{% endblock %}
+</div></div><div class="row mt-5">
+<div class="col mx-auto text-center">
+	<a href="{{ path('program_index') }}" class="mx-auto mt-2 text-decoration-none text-light">
+		retour à la liste des programmes
+	</a>
+</div></div></div>{% endblock %}
