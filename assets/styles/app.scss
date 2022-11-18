@@ -6,3 +6,11 @@ $body-color: #384454;
 body {
     background-color: #384454;
 }
+
+.pics {
+    transition: transform .2s;
+}
+
+.pics:hover {
+    transform: scale(1.05);
+}

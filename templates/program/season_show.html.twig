@@ -23,17 +23,35 @@
 					</div>
 				</div>
 			</div>
-			<div class="row mb-5">
-				{% for s in season %}
-					<div class="col-3 mx-auto">
-						<a href="{{ path('program_season_show', { 'program': program.id, 'season': s.id}) }}" class="text-decoration-none text-center">
-							<div class="rounded text-dark" style="background-color:#E1A624;">Saison
-								{{s.number}}</div>
-						</a>
-					</div>
-				{% endfor %}
+			<div class="row">
+				<div class="col-9 d-grid mx-auto">
+					<h2 class="text-light">Liste des épisodes</h2>
+					<table class="align-items-center rounded text-light w-100 justify-content-center mb-5">
+						<thead>
+							<th class="">Episode</th>
+							<th class="w-75">Titre</th>
+							<th>Regarder</th>
+						</thead>
+						<tbody>
+							<tr class="border-bottom">
+								<td height="50">1</td>
+								<td>Titre Test</td>
+								<td>Lien du stream</td>
+							</tr>
+							<tr class="border-bottom">
+								<td height="50">1</td>
+								<td>Titre Test</td>
+								<td>Lien du stream</td>
+							</tr>
+							<tr class="border-bottom">
+								<td height="50">1</td>
+								<td>Titre Test</td>
+								<td>Lien du stream</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-
 		</div>
 		<div class="row mt-5">
 			<div class="col mx-auto text-center">
@@ -42,4 +60,5 @@
 				</a>
 			</div>
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}

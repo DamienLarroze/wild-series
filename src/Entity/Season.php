@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SeasonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,8 +16,8 @@ class Season
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $program_id = null;
+    #[ORM\ManyToOne(inversedBy: 'program')]
+    private ?Program $program = null;
 
     #[ORM\Column]
     private ?int $number = null;
@@ -26,19 +28,27 @@ class Season
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\OneToMany(mappedBy: 'season', targetEntity: Episode::class)]
+    private Collection $season;
+
+    public function __construct()
+    {
+        $this->season = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getProgramId(): ?int
+    public function getProgram(): ?program
     {
-        return $this->program_id;
+        return $this->program;
     }
 
-    public function setProgramId(int $program_id): self
+    public function setProgram(?program $program): self
     {
-        $this->program_id = $program_id;
+        $this->program = $program;
 
         return $this;
     }
@@ -75,6 +85,36 @@ class Season
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Episode>
+     */
+    public function getSeason(): Collection
+    {
+        return $this->season;
+    }
+
+    public function addSeason(Episode $season): self
+    {
+        if (!$this->season->contains($season)) {
+            $this->season->add($season);
+            $season->setSeason($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeason(Episode $season): self
+    {
+        if ($this->season->removeElement($season)) {
+            // set the owning side to null (unless already changed)
+            if ($season->getSeason() === $this) {
+                $season->setSeason(null);
+            }
+        }
 
         return $this;
     }

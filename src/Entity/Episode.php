@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\EpisodeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EpisodeRepository;
 
 #[ORM\Entity(repositoryClass: EpisodeRepository::class)]
 class Episode
@@ -14,8 +16,8 @@ class Episode
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $season_id = null;
+    #[ORM\ManyToOne(inversedBy: 'season')]
+    private ?season $season = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -31,14 +33,14 @@ class Episode
         return $this->id;
     }
 
-    public function getSeasonId(): ?int
+    public function getSeason(): ?season
     {
-        return $this->season_id;
+        return $this->season;
     }
 
-    public function setSeasonId(int $season_id): self
+    public function setSeason(?season $season): self
     {
-        $this->season_id = $season_id;
+        $this->season = $season;
 
         return $this;
     }
